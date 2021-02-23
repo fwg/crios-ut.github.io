@@ -1,0 +1,24 @@
+<!-- Videos -->
+  <section class="page-section" id="{{ site.data.sitetext.videos.section | default: "videos" }}">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading">{{ site.data.sitetext.videos.title | default: "Videos" }}</h2>
+        </div>
+      </div>
+
+      <div class="videos">
+        {% assign videos_list = site.videos | sort: site.videos.date | reverse %}
+        {% for entry in videos_list %}
+        <div class="video">
+          <h3>{{ entry.title }}</h3>
+          {% video entry.video entry.image entry.alt entry.ratio %}
+          <div class="video--description">
+            {{ entry.content }}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+<!-- End Videos -->

@@ -26,3 +26,40 @@ if ('scrollRestoration' in history) {
         clearTimeout(playTimeout);
     });
 })(document.querySelector('#start-video'));
+
+function resetVideoEmbeds() {
+    resetVideoEmbeds.queue.forEach(function (pair) {
+        $(pair[0]).replaceWith(pair[1]);
+    });
+    resetVideoEmbeds.queue = [];
+}
+
+resetVideoEmbeds.queue = [];
+
+$('a.video-embed').each(function () {
+    var a = this;
+    var youtube = a.href.match(/youtu(\.be|be\.com)/);
+    var vimeo = a.href.match(/vimeo\.com/);
+    var id = a.getAttribute('data-id');
+    var src = a.href;
+
+    if (youtube) {
+        src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&showinfo=0';
+    }
+
+    if (vimeo) {
+        src = 'https://player.vimeo.com/video/' + id + '?autoplay=1';
+    }
+
+    a.onclick = function (ev) {
+        resetVideoEmbeds();
+        ev.preventDefault();
+        var frame = $('<div class="video-embed">' +
+            '<iframe allow="autoplay" allowfullscreen frameborder="0"></iframe>' +
+            '</div>');
+        frame.attr('data-ratio', a.getAttribute('data-ratio'));
+        frame.find('iframe')[0].src = src;
+        resetVideoEmbeds.queue.push([frame, a]);
+        $(this).replaceWith(frame);
+    };
+});
