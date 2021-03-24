@@ -8,7 +8,7 @@
       </div>
 
       <div class="videos">
-        {% assign videos_list = site.videos | sort: site.videos.date | reverse %}
+        {% assign videos_list = site.videos | where: "visible", true | sort: site.videos.date | reverse %}
         {% for entry in videos_list %}
         <div class="video">
           <h3>{{ entry.title }}</h3>
