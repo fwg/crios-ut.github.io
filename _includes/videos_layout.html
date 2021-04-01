@@ -7,11 +7,23 @@
         </div>
       </div>
 
-      <div class="videos">
+      <div class="videos" data-filter-tag="" onchange="this.setAttribute('data-filter-tag', this.querySelector('input:checked').value)">
+        <div class="tags">
+          <label>
+            <input type="radio" name="tag" value="" checked/>
+            <span><span>All</span> <span>({{ site.videos | where: "visible", true | size }})</span></span>
+          </label>
+          {% for tag in site.data.sitetext.videos.tags %}
+          <label>
+            <input type="radio" name="tag" value="{{ tag.value }}" />
+            <span><span>{{ tag.name }}</span> <span>({{ site.videos | where: "visible", true | where_exp: "item", "item.tags contains tag.value" | size }})</span></span>
+          </label>
+          {% endfor %}
+        </div>
         {% assign videos_list = site.videos | where: "visible", true | sort: site.videos.date | reverse %}
         {% for entry in videos_list %}
-        <div class="video">
-          <h3>{{ entry.title }}</h3>
+        <div class="video" data-tags="{{ entry.tags | join: " " }}">
+          <h3 class="sr-only">{{ entry.title }}</h3>
           {% video entry.video entry.image entry.alt entry.ratio %}
           <div class="video--description">
             {{ entry.content }}
@@ -21,4 +33,9 @@
       </div>
     </div>
   </section>
+  <style>
+    {% for tag in site.data.sitetext.videos.tags %}
+    .videos[data-filter-tag="{{ tag.value }}"] .video:not([data-tags ~= "{{ tag.value }}"]) {display: none;}
+    {% endfor %}
+  </style>
 <!-- End Videos -->

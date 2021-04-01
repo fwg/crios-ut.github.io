@@ -83,3 +83,32 @@ div.video-embed {
         height: 100%;
     }
 }
+
+.videos .tags {
+    margin-bottom: 1.5em;
+    font-size: 120%;
+}
+
+.videos label {
+    cursor: pointer;
+
+    &:hover input + span > span:first-child {
+        text-decoration: underline;
+    }
+
+    input {
+         visibility: hidden;
+         position: absolute;
+    }
+
+    input + span {
+        display: inline-block;
+        padding: 0.6em 1em;
+        border-radius: 5px;
+    }
+
+    input:checked + span {
+        background: $primary;
+        color: white;
+    }
+}

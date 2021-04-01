@@ -86,6 +86,8 @@ class Video < Liquid::Tag
         if not alt
           alt = "Play video '#{data[0]["title"]}'"
         end
+      else
+        print "Vimeo API: #{id} could not be loaded\n"
       end
     end
 
