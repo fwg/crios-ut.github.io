@@ -63,3 +63,10 @@ $('a.video-embed').each(function () {
         $(this).replaceWith(frame);
     };
 });
+
+$('.videos .tags .dropdown-item').click(function () {
+    $('.dropdown-item', this.parentNode).removeClass('active');
+    $(this).addClass('active');
+    $('#' + this.parentNode.getAttribute('aria-labelledby')).html($(this).html());
+    $(this).parents('[data-filter-tag]').attr('data-filter-tag', this.getAttribute('data-filter-tag'))
+})

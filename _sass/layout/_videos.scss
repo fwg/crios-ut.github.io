@@ -63,8 +63,8 @@ a.video-embed {
     }
 }
 
-.video + .video {
-    margin-top: 4rem;
+.video {
+    margin-bottom: 4rem;
 }
 
 div.video-embed {
@@ -73,6 +73,10 @@ div.video-embed {
 
     &[data-ratio="4/3"] {
         padding-bottom: 75%;
+    }
+
+    &[data-ratio="16/10"] {
+        padding-bottom: 62.5%;
     }
 
     iframe {
@@ -89,6 +93,12 @@ div.video-embed {
     font-size: 120%;
 }
 
+.videos .tags .dropdown-toggle {
+    margin-left: 1em;
+    padding: 0.6em 1.4em;
+}
+
+// TODO remove this after decision is final on how to structure the filter
 .videos label {
     cursor: pointer;
 

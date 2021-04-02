@@ -4,7 +4,7 @@ author:
 image:
 alt: Play Video
 video: https://vimeo.com/521799641
-ratio: 16/9
+ratio: 16/10
 date: 2020-11-03
 visible: true
 tags:

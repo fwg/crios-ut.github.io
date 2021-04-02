@@ -7,5 +7,7 @@ video: https://vimeo.com/521891448
 ratio: 16/9
 date: 2020-10-03
 visible: true
+tags:
+    - gcm
 ---
 Here is a text for a test video. Lorem ipsum dolor sit amet.
