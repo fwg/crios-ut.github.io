@@ -93,9 +93,30 @@ div.video-embed {
     font-size: 120%;
 }
 
+.videos .tags > span:first-child {
+    margin-right: 1em;
+}
+
 .videos .tags .dropdown-toggle {
-    margin-left: 1em;
     padding: 0.6em 1.4em;
+    max-width: 100%;
+
+    @media (max-width: 640px) {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-top: 0.5em;
+        text-align: left;
+        white-space: normal;
+
+        span:nth-child(2) {
+            margin-left: 0.5em;
+        }
+
+        &:after {
+            margin-left: auto;
+        }
+    }
 }
 
 // TODO remove this after decision is final on how to structure the filter
